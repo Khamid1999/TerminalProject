@@ -58,16 +58,16 @@ class CustomButton extends StatelessWidget {
     return Material(
       color: backgroundColor,
       elevation: 0,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(15),
       child: InkWell(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(15),
         onTap: onTap,
         child: Ink(
           width: width,
           height: height,
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(15),
           ),
           child: Center(child: content),
         ),

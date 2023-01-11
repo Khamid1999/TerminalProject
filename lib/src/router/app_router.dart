@@ -9,17 +9,21 @@ import 'package:terminal_project/src/home/presentation/pages/home_page.dart';
 import 'package:terminal_project/src/language_choose/presentation/bloc/language_choose_bloc.dart';
 import 'package:terminal_project/src/language_choose/presentation/pages/language_choose_page.dart';
 import 'package:terminal_project/src/login/presentation/bloc/login_bloc.dart';
+import 'package:terminal_project/src/login/presentation/bloc/password_visibility_bloc.dart';
 import 'package:terminal_project/src/login/presentation/pages/login_page.dart';
 import 'package:terminal_project/src/payment_failure/presentation/pages/payment_failure_page.dart';
 import 'package:terminal_project/src/payment_successful/presentation/bloc/payment_successful_bloc.dart';
 import 'package:terminal_project/src/payment_successful/presentation/pages/payment_successful_page.dart';
 import 'package:terminal_project/src/qr_code/presentation/bloc/qr_code_bloc.dart';
 import 'package:terminal_project/src/qr_code/presentation/pages/qr_code_scanner_page.dart';
-import 'package:terminal_project/src/root/presentation/bloc/root_page_bloc.dart';
+import 'package:terminal_project/src/root/presentation/bloc/root_page_cubit.dart';
 import 'package:terminal_project/src/root/presentation/pages/RootPage.dart';
 import 'package:terminal_project/src/router/app_routes.dart';
+import 'package:terminal_project/src/second_step/presentation/bloc/crypto_select_bloc.dart';
 import 'package:terminal_project/src/second_step/presentation/bloc/second_step_bloc.dart';
 import 'package:terminal_project/src/second_step/presentation/pages/second_step_page.dart';
+import 'package:terminal_project/src/settings/presentation/bloc/settings_bloc.dart';
+import 'package:terminal_project/src/settings/presentation/pages/settings_page.dart';
 import 'package:terminal_project/src/statistics/presentation/bloc/statistics_bloc.dart';
 import 'package:terminal_project/src/statistics/presentation/pages/StatisticsPage.dart';
 import 'package:terminal_project/src/third_step/presentation/bloc/third_step_bloc.dart';
@@ -44,8 +48,15 @@ class AppRouter {
       case AppRoutes.loginPage:
         return MaterialPageRoute(
           settings: routeSettings,
-          builder: (_) => BlocProvider(
-            create: (context) => LoginBloc(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => LoginBloc(),
+              ),
+              BlocProvider(
+                create: (context) => PasswordVisibilityBloc(),
+              ),
+            ],
             child: LoginPage(),
           ),
         );
@@ -55,7 +66,7 @@ class AppRouter {
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (_) => RootPageBloc(),
+                create: (_) => RootPageCubit(),
               ),
               BlocProvider(
                 create: (_) => HomePageBloc(),
@@ -94,6 +105,14 @@ class AppRouter {
             child: HistoryPage(),
           ),
         );
+      case AppRoutes.settingsPage:
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => BlocProvider(
+            create: (context) => SettingsBloc(),
+            child: SettingsPage(),
+          ),
+        );
       case AppRoutes.firstStepPage:
         return MaterialPageRoute(
           settings: routeSettings,
@@ -105,8 +124,15 @@ class AppRouter {
       case AppRoutes.secondStepPage:
         return MaterialPageRoute(
           settings: routeSettings,
-          builder: (_) => BlocProvider(
-            create: (context) => SecondStepBloc(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => SecondStepBloc(),
+              ),
+              BlocProvider(
+                create: (context) => CryptoSelectBloc(),
+              ),
+            ],
             child: SecondStepPage(),
           ),
         );

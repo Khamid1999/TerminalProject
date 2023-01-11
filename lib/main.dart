@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:terminal_project/src/language_choose/presentation/pages/language_choose_page.dart';
 import 'package:terminal_project/src/router/app_router.dart';
 import 'package:terminal_project/src/router/app_routes.dart';
-import 'package:terminal_project/src/theme/app_colors.dart';
+import 'package:terminal_project/src/theme/app_theme.dart';
 import 'package:terminal_project/src/tools/shared_preferences_keys.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +33,7 @@ Future<void> main() async {
 
 class TerminalApp extends StatelessWidget {
   final bool hasLocale;
+
   const TerminalApp({
     Key? key,
     this.hasLocale = false,
@@ -41,30 +42,15 @@ class TerminalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.green,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            color: AppColors.black,
-          ),
-          titleTextStyle: TextStyle(
-            color: AppColors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        scaffoldBackgroundColor: AppColors.white,
-      ),
+      theme: AppTheme().appTheme,
       title: 'Terminal Project',
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      home: LanguageChoosePage(),
-      // onGenerateRoute: AppRouter.instance.onGenerateRoute,
-      // initialRoute:
-      //     hasLocale ? AppRoutes.authWrapper : AppRoutes.languageChoosePage,
+      onGenerateRoute: AppRouter.instance.onGenerateRoute,
+      initialRoute: AppRoutes.languageChoosePage,
+      //initialRoute: hasLocale ? AppRoutes.rootPage : AppRoutes.languageChoosePage,
     );
   }
 }

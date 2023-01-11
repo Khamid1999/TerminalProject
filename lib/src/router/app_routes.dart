@@ -6,6 +6,7 @@ class AppRoutes {
       languageChoosePage = 'language_choose_page',
       rootPage = 'root_page',
       homePage = 'home_page',
+      settingsPage = 'settings_page',
       statisticsPage = 'statistics_page',
       historyPage = 'history_page',
       firstStepPage = 'first_step_page',

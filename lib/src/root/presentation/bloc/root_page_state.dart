@@ -1,11 +1,19 @@
-part of 'root_page_bloc.dart';
+part of 'root_page_cubit.dart';
 
-@immutable
-abstract class RootPageState {
+class RootPageState extends Equatable {
   final int index;
-  RootPageState({required this.index});
-}
+  final NavBarItem navBarItem;
+  final List<Widget> screenList = [
+    const HistoryPage(),
+    const HomePage(),
+    const StatisticsPage(),
+  ];
 
-class RootPageInitial extends RootPageState {
-  RootPageInitial({required int index}) : super(index: index);
+  RootPageState({
+    required this.index,
+    required this.navBarItem,
+  });
+
+  @override
+  List<Object> get props => [index, navBarItem];
 }

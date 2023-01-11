@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:terminal_project/src/theme/app_colors.dart';
 
-class NavBarItem extends StatelessWidget {
+class NavBarItemWidget extends StatelessWidget {
   final IconData icon;
   final Color backgroundColor;
-  NavBarItem({required this.icon, required this.backgroundColor});
+  NavBarItemWidget({
+    required this.icon,
+    required this.backgroundColor,
+  });
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
@@ -14,7 +17,7 @@ class NavBarItem extends StatelessWidget {
         child: Icon(
           icon,
           color: AppColors.black,
-          size: 25,
+          size: 27,
         ),
       ),
     );

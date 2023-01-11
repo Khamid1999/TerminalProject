@@ -21,6 +21,7 @@ class AppSpacings {
       vert16 = SizedBox(height: 16.0),
       vert20 = SizedBox(height: 20.0),
       vert24 = SizedBox(height: 24.0),
+      vert28 = SizedBox(height: 28.0),
       vert32 = SizedBox(height: 32.0),
       vert40 = SizedBox(height: 40.0),
       vert48 = SizedBox(height: 48.0);

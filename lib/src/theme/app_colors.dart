@@ -10,6 +10,7 @@ class AppColors {
       dark = Color(0xFF253A38),
       black = Color(0xFF000000),
       containerBackColor = Color.fromRGBO(23, 180, 133, 0.2),
+      containerShadowColor = Color.fromRGBO(74, 79, 97, 0.08),
       darkBlue = Color(0xFF0033A0),
       lightOrange = Color(0xFFFB6858),
       ukFlagBlue = Color(0xFF00247D),

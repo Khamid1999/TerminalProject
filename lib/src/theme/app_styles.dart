@@ -10,27 +10,34 @@ class AppStyles {
         fontFamily: "OpenSans",
       ),
       appBarTextStyle = TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontSize: 25,
+        fontWeight: FontWeight.w900,
         color: AppColors.black,
         fontFamily: "OpenSans",
       ),
       mainBlackTextStyle = TextStyle(
+        letterSpacing: 1,
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: AppColors.black,
         fontFamily: "OpenSans",
         shadows: [
           Shadow(
-            blurRadius: 10.0,
+            blurRadius: 5.0,
             color: AppColors.black,
-            offset: Offset(5.0, 5.0),
+            offset: Offset(1.0, 1.0),
           ),
         ],
       ),
       mainWhiteTextStyle = TextStyle(
         fontSize: 26,
         color: AppColors.white,
+        fontFamily: "OpenSans",
+      ),
+      textFieldHintStyle = TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.grey,
         fontFamily: "OpenSans",
       ),
       mainGreenTextStyle = TextStyle(
@@ -42,6 +49,12 @@ class AppStyles {
         fontSize: 15,
         fontWeight: FontWeight.w700,
         color: AppColors.dark,
+        fontFamily: "OpenSans",
+      ),
+      settingsTitleStyle = TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w700,
+        color: AppColors.black,
         fontFamily: "OpenSans",
       ),
       localizationTextStyle = TextStyle(

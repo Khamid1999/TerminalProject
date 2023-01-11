@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:terminal_project/src/app_constants/app_strings.dart';
 import 'package:terminal_project/src/language_choose/presentation/widgets/custom_button.dart';
 import 'package:terminal_project/src/router/app_routes.dart';
 import 'package:terminal_project/src/theme/app_colors.dart';
@@ -35,7 +36,7 @@ class LanguageChoosePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/crypto_logo.png',
+                AppStrings.cryptoLogo,
                 width: size.width,
                 height: size.height * 0.3,
                 fit: BoxFit.fitWidth,
@@ -74,11 +75,11 @@ class LanguageChoosePage extends StatelessWidget {
                               const Locale('en'),
                             ),
                             icon: Image.asset(
-                              'assets/images/united_states_flag.png',
+                              AppStrings.unitedStatesFlag,
                               height: 30,
                             ),
                             label: Text(
-                              "English",
+                              AppStrings.english,
                               style: AppStyles.localizationTextStyle
                                   .copyWith(fontSize: 14),
                             ),
@@ -105,11 +106,11 @@ class LanguageChoosePage extends StatelessWidget {
                               const Locale('ru'),
                             ),
                             icon: Image.asset(
-                              'assets/images/russian_flag.png',
+                              AppStrings.russianFlag,
                               height: 30,
                             ),
                             label: Text(
-                              "Русский",
+                              AppStrings.russian,
                               style: AppStyles.localizationTextStyle
                                   .copyWith(fontSize: 14),
                             ),

@@ -1,4 +1,4 @@
-part of 'root_page_bloc.dart';
+part of 'root_page_cubit.dart';
 
 @immutable
 abstract class RootPageEvent {}
