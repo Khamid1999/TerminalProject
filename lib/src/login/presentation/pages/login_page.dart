@@ -11,9 +11,19 @@ import 'package:terminal_project/src/theme/app_colors.dart';
 import 'package:terminal_project/src/theme/app_spacings.dart';
 import 'package:terminal_project/src/theme/app_styles.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  String email = '';
+  String userId = '1810144';
+  String password = '';
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -26,51 +36,55 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
-            !isKeyboard ?
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(55),
-              ),
-              elevation: 10,
-              color: AppColors.white,
-              child: Container(
-                width: size.width,
-                height: isKeyboard ? size.height * 0.3 : size.height * 0.4,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: AppColors.grey,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(55),
-                    bottomRight: Radius.circular(55),
-                  ),
-                ),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        AppSpacings.vert24,
-                        Image.asset(
-                          "assets/images/crypto_logo_without_background.png",
-                          width: constraints.maxWidth * 0.5,
-                          height: constraints.maxHeight * 0.5,
-                          color: AppColors.white,
+            !isKeyboard
+                ? Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(55),
+                    ),
+                    elevation: 10,
+                    color: AppColors.white,
+                    child: Container(
+                      width: size.width,
+                      height:
+                          isKeyboard ? size.height * 0.3 : size.height * 0.4,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: AppColors.green,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(55),
+                          bottomRight: Radius.circular(55),
                         ),
-                        AppSpacings.vert12,
-                        Text(
-                          'provide_login_info'.tr(),
-                          style: AppStyles.mainWhiteTextStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                        AppSpacings.vert12,
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ) : Container(),
+                      ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              AppSpacings.vert24,
+                              Image.asset(
+                                "assets/images/crypto_logo_without_background.png",
+                                width: constraints.maxWidth * 0.5,
+                                height: constraints.maxHeight * 0.5,
+                                color: AppColors.black,
+                              ),
+                              AppSpacings.vert12,
+                              Text(
+                                'provide_login_info'.tr(),
+                                style: AppStyles.mainWhiteTextStyle.copyWith(
+                                  color: AppColors.black,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              AppSpacings.vert12,
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                : Container(),
             Container(
               width: size.width,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -86,6 +100,11 @@ class LoginPage extends StatelessWidget {
                     ),
                     AppSpacings.vert12,
                     CustomTextField(
+                      onChanged: (value) {
+                        setState(() {
+                          email = value;
+                        });
+                      },
                       validator: (value) {
                         if (value?.isEmpty ?? false) {
                           return 'empty_value_error'.tr();
@@ -95,7 +114,7 @@ class LoginPage extends StatelessWidget {
                       },
                       textInputAction: TextInputAction.next,
                       hintText: 'enter_your_email'.tr(),
-                      controller: bloc.emailController,
+                      controller: emailController,
                     ),
                     AppSpacings.vert20,
                     Text(
@@ -108,10 +127,15 @@ class LoginPage extends StatelessWidget {
                       bloc: context.read<PasswordVisibilityBloc>(),
                       builder: (context, state) {
                         return CustomTextField(
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          },
                           validator: (value) {
                             if (value?.isEmpty ?? false) {
                               return 'empty_value_error'.tr();
-                            } else if (value!.length  < 6) {
+                            } else if (value!.length < 6) {
                               return 'password_length_error'.tr();
                             } else {
                               return null;
@@ -133,7 +157,7 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 );
                           },
-                          controller: bloc.passwordController,
+                          controller: passwordController,
                           textInputAction: TextInputAction.go,
                         );
                       },
@@ -167,6 +191,18 @@ class LoginPage extends StatelessWidget {
                     ),
                   );
                 }
+                if (state is LoginError) {
+                  return BottomWhiteContainer(
+                    height: 100,
+                    width: size.width,
+                    child: Center(
+                      child: Text(
+                        state.error,
+                        style: AppStyles.mainBlackTextStyle,
+                      ),
+                    ),
+                  );
+                }
                 if (state is! LoginLoading) {
                   return Container(
                     width: size.width,
@@ -174,20 +210,35 @@ class LoginPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
-                          AppColors.grey,
+                          AppColors.green,
+                        ),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(
+                                75,
+                              ),
+                              topRight: Radius.circular(
+                                75,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       onPressed: () {
-                        bloc.add(
-                          LoginButtonPressedEvent(
-                            email: bloc.emailController.text,
-                            password: bloc.passwordController.text,
-                          ),
-                        );
+                        context.read<LoginBloc>().add(
+                              LoginButtonPressedEvent(
+                                userId: userId,
+                                login: email,
+                                password: password,
+                              ),
+                            );
+                        debugPrint(email);
+                        debugPrint(password);
                       },
                       child: Text(
                         'login'.tr(),
-                        style: AppStyles.mainWhiteTextStyle,
+                        style: AppStyles.mainBlackTextStyle,
                       ),
                     ),
                   );

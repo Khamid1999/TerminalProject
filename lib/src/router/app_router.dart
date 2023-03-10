@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:terminal_project/src/first_step/presentation/bloc/first_step_bloc.dart';
 import 'package:terminal_project/src/first_step/presentation/pages/first_step_page.dart';
 import 'package:terminal_project/src/history/presentation/bloc/history_bloc.dart';
+import 'package:terminal_project/src/history/presentation/bloc/transaction_month_bloc.dart';
 import 'package:terminal_project/src/history/presentation/pages/history_page.dart';
 import 'package:terminal_project/src/home/presentation/bloc/home_page_bloc.dart';
 import 'package:terminal_project/src/home/presentation/pages/home_page.dart';
@@ -14,6 +15,8 @@ import 'package:terminal_project/src/login/presentation/pages/login_page.dart';
 import 'package:terminal_project/src/payment_failure/presentation/pages/payment_failure_page.dart';
 import 'package:terminal_project/src/payment_successful/presentation/bloc/payment_successful_bloc.dart';
 import 'package:terminal_project/src/payment_successful/presentation/pages/payment_successful_page.dart';
+import 'package:terminal_project/src/printing_check/presentation/bloc/printing_check_bloc.dart';
+import 'package:terminal_project/src/printing_check/presentation/pages/printing_check_page.dart';
 import 'package:terminal_project/src/qr_code/presentation/bloc/qr_code_bloc.dart';
 import 'package:terminal_project/src/qr_code/presentation/pages/qr_code_scanner_page.dart';
 import 'package:terminal_project/src/root/presentation/bloc/root_page_cubit.dart';
@@ -75,7 +78,10 @@ class AppRouter {
                 create: (_) => StatisticsBloc(),
               ),
               BlocProvider(
-                create: (_) => HistoryBloc(),
+                create: (_) => HistoryBloc()
+                  ..add(
+                    GetHistoryEvent(month: 'January'),
+                  ),
               ),
             ],
             child: RootPage(),
@@ -92,16 +98,20 @@ class AppRouter {
       case AppRoutes.statisticsPage:
         return MaterialPageRoute(
           settings: routeSettings,
-          builder: (_) => BlocProvider(
-            create: (_) => StatisticsBloc(),
-            child: StatisticsPage(),
-          ),
+          builder: (_) => StatisticsPage(),
         );
       case AppRoutes.historyPage:
         return MaterialPageRoute(
           settings: routeSettings,
-          builder: (_) => BlocProvider(
-            create: (context) => HistoryBloc(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => HistoryBloc()
+              ),
+              BlocProvider(
+                create: (context) => TransactionMonthBloc()
+              ),
+            ],
             child: HistoryPage(),
           ),
         );
@@ -166,6 +176,17 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => PaymentFailureBloc(),
             child: PaymentFailurePage(),
+          ),
+        );
+      case AppRoutes.printingCheckPage:
+        return MaterialPageRoute(
+          settings: routeSettings,
+          builder: (_) => BlocProvider(
+            create: (context) => PrintingCheckBloc()
+              ..add(
+                FindPrinterEvent(),
+              ),
+            child: PrintingCheckPage(),
           ),
         );
       default:

@@ -4,9 +4,7 @@ part of 'crypto_select_bloc.dart';
 abstract class CryptoSelectEvent {}
 class SelectCryptoCurrencyEvent extends CryptoSelectEvent {
   final String cryptoCurrency;
-  final bool isSelected;
   SelectCryptoCurrencyEvent({
-    required this.isSelected,
     required this.cryptoCurrency,
   });
 }

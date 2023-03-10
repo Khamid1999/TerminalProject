@@ -13,6 +13,19 @@ class PaymentSuccessfulPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.dark,
+          ),
+        ),
+      ),
       body: Container(
         width: size.width,
         height: size.height,
@@ -48,19 +61,19 @@ class PaymentSuccessfulPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Container(
-                        height: 60,
-                        child: CustomButton.text(
-                          labelStyle: AppStyles.mainWhiteTextStyle.copyWith(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          backgroundColor: AppColors.green,
-                          onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.rootPage);
-                          },
-                          label: "back_to_menu".tr(),
-                        ),
-                      ),
+                  height: 60,
+                  child: CustomButton.text(
+                    labelStyle: AppStyles.mainWhiteTextStyle.copyWith(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    backgroundColor: AppColors.green,
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.rootPage);
+                    },
+                    label: "back_to_menu".tr(),
+                  ),
+                ),
               ),
               AppSpacings.vert12,
               Card(
@@ -71,10 +84,7 @@ class PaymentSuccessfulPage extends StatelessWidget {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: AppColors.green,
-                      width: 3
-                    ),
+                    border: Border.all(color: AppColors.green, width: 3),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   height: 60,
@@ -86,6 +96,7 @@ class PaymentSuccessfulPage extends StatelessWidget {
                     ),
                     backgroundColor: AppColors.white,
                     onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.printingCheckPage);
                     },
                     label: "print_receipt".tr(),
                   ),

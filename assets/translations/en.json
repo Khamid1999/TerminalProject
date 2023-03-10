@@ -47,14 +47,17 @@
   "payment_successful": "Payment successful",
   "back_to_menu": "Back to Menu",
   "print_receipt": "Print Receipt",
-  "received_in": "Received in",
+  "received_in": "Received in ",
   "payment_id": "Payment ID:",
   "language": "Language",
   "main_currency": "Main Currency",
   "withdrawals_to": "Withdrawals to",
   "help_center": "Help Center",
+  "no_transactions": "No transactions this month",
   "last": "Last",
   "total_received": "Total \nreceived",
   "number_of_transactions": "Number of transactions",
+  "no_devices": "No devices",
+  "devices": "Devices",
   "english": "EN"
 }

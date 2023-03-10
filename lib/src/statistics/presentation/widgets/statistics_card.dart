@@ -37,6 +37,7 @@ class StatisticsCard extends StatelessWidget {
           ),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Align(
               alignment: Alignment.topLeft,

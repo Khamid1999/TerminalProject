@@ -25,8 +25,6 @@ class SecondStepPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        width: size.width,
-        height: size.height,
         padding: EdgeInsets.symmetric(
           horizontal: 20,
         ),
@@ -36,6 +34,7 @@ class SecondStepPage extends StatelessWidget {
             builder: (context, state) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   AppSpacings.vert20,
                   Center(
@@ -65,12 +64,12 @@ class SecondStepPage extends StatelessWidget {
                           // eto onTap func
                           context.read<CryptoSelectBloc>().add(
                                 SelectCryptoCurrencyEvent(
-                                  isSelected: bloc.bitCoinSelected,
                                   cryptoCurrency: 'Bitcoin',
                                 ),
                               );
                         },
-                        selected: bloc.bitCoinSelected, //eto boolean
+                        selected: bloc.selectedCryptoCurrency ==
+                            'Bitcoin', //eto boolean
                       ),
                       CryptoCard(
                         width: cardWidth,
@@ -78,13 +77,12 @@ class SecondStepPage extends StatelessWidget {
                         label: 'ethereum'.tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.ethereumSelected,
-                              cryptoCurrency: 'Ethereum',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Ethereum',
+                                ),
+                              );
                         },
-                        selected: bloc.ethereumSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Ethereum',
                       ),
                     ],
                   ),
@@ -98,13 +96,12 @@ class SecondStepPage extends StatelessWidget {
                         label: "doge_coin".tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Doge',
+                                ),
+                              );
                         },
-                        selected: bloc.dogeCoinSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Doge',
                       ),
                       CryptoCard(
                         width: cardWidth,
@@ -112,13 +109,12 @@ class SecondStepPage extends StatelessWidget {
                         label: 'lite_coin'.tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Litecoin',
+                                ),
+                              );
                         },
-                        selected: bloc.litecoinSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Litecoin',
                       ),
                     ],
                   ),
@@ -132,13 +128,12 @@ class SecondStepPage extends StatelessWidget {
                         label: "dash".tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Dash',
+                                ),
+                              );
                         },
-                        selected: bloc.dashCoinSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Dash',
                       ),
                       CryptoCard(
                         width: cardWidth,
@@ -146,13 +141,12 @@ class SecondStepPage extends StatelessWidget {
                         label: 'ripple'.tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Ripple',
+                                ),
+                              );
                         },
-                        selected: bloc.rippleSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Ripple',
                       ),
                     ],
                   ),
@@ -166,13 +160,12 @@ class SecondStepPage extends StatelessWidget {
                         label: "binance_coin".tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'Binance',
+                                ),
+                              );
                         },
-                        selected: bloc.binanceCoinSelected,
+                        selected: bloc.selectedCryptoCurrency == 'Binance',
                       ),
                       CryptoCard(
                         width: cardWidth,
@@ -180,13 +173,12 @@ class SecondStepPage extends StatelessWidget {
                         label: 'usdt'.tr(),
                         onSelect: () {
                           context.read<CryptoSelectBloc>().add(
-                            SelectCryptoCurrencyEvent(
-                              isSelected: bloc.dogeCoinSelected,
-                              cryptoCurrency: 'DogeCoin',
-                            ),
-                          );
+                                SelectCryptoCurrencyEvent(
+                                  cryptoCurrency: 'USDT',
+                                ),
+                              );
                         },
-                        selected: bloc.usdtCoinSelected,
+                        selected: bloc.selectedCryptoCurrency == 'USDT',
                       ),
                     ],
                   ),

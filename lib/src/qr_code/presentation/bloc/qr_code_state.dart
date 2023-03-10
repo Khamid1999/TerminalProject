@@ -4,3 +4,5 @@ part of 'qr_code_bloc.dart';
 abstract class QrCodeState {}
 
 class QrCodeInitial extends QrCodeState {}
+
+

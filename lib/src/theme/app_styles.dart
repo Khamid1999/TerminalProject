@@ -51,6 +51,12 @@ class AppStyles {
         color: AppColors.dark,
         fontFamily: "OpenSans",
       ),
+      historyTextStyle = TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: AppColors.dark,
+        fontFamily: "OpenSans",
+      ),
       settingsTitleStyle = TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.w700,

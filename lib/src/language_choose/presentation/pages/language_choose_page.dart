@@ -21,117 +21,101 @@ class LanguageChoosePage extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(6.123234262925839e-17, 1),
-              end: Alignment(-1, 6.123234262925839e-17),
-              colors: [
-                AppColors.black.withOpacity(0.4),
-                AppColors.white,
-                AppColors.black.withOpacity(0.4),
-              ],
-            ),
+            color: AppColors.white,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
                 AppStrings.cryptoLogo,
                 width: size.width,
-                height: size.height * 0.3,
+                height: size.height * 0.4,
                 fit: BoxFit.fitWidth,
               ),
               AppSpacings.vert40,
-              AppSpacings.vert40,
-              Text(
-                "choose_language".tr(),
-                style: AppStyles.headerTextStyle,
-                textAlign: TextAlign.center,
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30),
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: AppColors.borderColor,
-                        width: 0.5,
-                        style: BorderStyle.solid,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 30),
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: AppColors.borderColor,
+                      width: 0.5,
+                      style: BorderStyle.solid,
+                    ),
+                  ),
+                  padding: EdgeInsets.all(2),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () =>
+                              EasyLocalization.of(context)?.setLocale(
+                            const Locale('en'),
+                          ),
+                          icon: Image.asset(
+                            AppStrings.unitedStatesFlag,
+                            height: 30,
+                          ),
+                          label: Text(
+                            AppStrings.english,
+                            style: AppStyles.localizationTextStyle
+                                .copyWith(fontSize: 14, color: AppColors.black),
+                          ),
+                          style: ButtonStyle(
+                            elevation: MaterialStateProperty.all(0),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all(
+                              context.locale.languageCode == 'en'
+                                  ? AppColors.lightGreen
+                                  : Colors.transparent,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    padding: EdgeInsets.all(2),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () =>
-                                EasyLocalization.of(context)?.setLocale(
-                              const Locale('en'),
-                            ),
-                            icon: Image.asset(
-                              AppStrings.unitedStatesFlag,
-                              height: 30,
-                            ),
-                            label: Text(
-                              AppStrings.english,
-                              style: AppStyles.localizationTextStyle
-                                  .copyWith(fontSize: 14),
-                            ),
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () =>
+                              EasyLocalization.of(context)?.setLocale(
+                            const Locale('ru'),
+                          ),
+                          icon: Image.asset(
+                            AppStrings.russianFlag,
+                            height: 30,
+                          ),
+                          label: Text(
+                            AppStrings.russian,
+                            style: AppStyles.localizationTextStyle
+                                .copyWith(fontSize: 14, color: AppColors.black),
+                          ),
+                          style: ButtonStyle(
+                            elevation: MaterialStateProperty.all(0),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
-                              backgroundColor: MaterialStateProperty.all(
-                                context.locale.languageCode == 'en'
-                                    ? AppColors.black.withOpacity(0.7)
-                                    : Colors.transparent,
-                              ),
+                            ),
+                            backgroundColor: MaterialStateProperty.all(
+                              context.locale.languageCode == 'ru'
+                                  ? AppColors.lightGreen
+                                  : Colors.transparent,
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            onPressed: () =>
-                                EasyLocalization.of(context)?.setLocale(
-                              const Locale('ru'),
-                            ),
-                            icon: Image.asset(
-                              AppStrings.russianFlag,
-                              height: 30,
-                            ),
-                            label: Text(
-                              AppStrings.russian,
-                              style: AppStyles.localizationTextStyle
-                                  .copyWith(fontSize: 14),
-                            ),
-                            style: ButtonStyle(
-                              elevation: MaterialStateProperty.all(0),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                              backgroundColor: MaterialStateProperty.all(
-                                context.locale.languageCode == 'ru'
-                                    ? AppColors.black.withOpacity(0.7)
-                                    : Colors.transparent,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -141,7 +125,9 @@ class LanguageChoosePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: CustomButton.text(
                     height: 46,
-                    backgroundColor: AppColors.black.withOpacity(0.5),
+                    backgroundColor: AppColors.green.withOpacity(
+                      0.5,
+                    ),
                     onTap: () async {
                       final sp = await SharedPreferences.getInstance();
                       sp.setString(
@@ -153,7 +139,7 @@ class LanguageChoosePage extends StatelessWidget {
                     label: "continue".tr(),
                     labelStyle: AppStyles.actionButtonTextStyle.copyWith(
                       fontSize: 15,
-                      color: AppColors.white,
+                      color: AppColors.black,
                     ),
                   ),
                 ),

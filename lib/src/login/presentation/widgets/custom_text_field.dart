@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? obscureText;
   final VoidCallback? suffixIconOnTap;
+  final Function(String) onChanged;
   const CustomTextField({
     Key? key,
     required this.hintText,
@@ -17,7 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixIconOnTap,
     this.obscureText,
     required this.controller,
-    required this.textInputAction, required this.validator,
+    required this.textInputAction, required this.validator, required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -26,6 +27,7 @@ class CustomTextField extends StatelessWidget {
       style: AppStyles.textFieldHintStyle.copyWith(
         color: AppColors.black,
       ),
+      onChanged: onChanged,
       obscureText: obscureText ?? false,
       validator: validator,
       decoration: InputDecoration(

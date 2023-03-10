@@ -14,5 +14,6 @@ class AppRoutes {
       thirdStepPage = 'third_step_page',
       qrCodeScannerPage = 'qr_code_scanner_page',
       paymentSuccessPage = 'payment_success_page',
-      paymentFailurePage = 'payment_failure_page';
+      paymentFailurePage = 'payment_failure_page',
+      printingCheckPage = 'printing_check_page';
 }

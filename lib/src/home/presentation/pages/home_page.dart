@@ -90,7 +90,6 @@ class HomePage extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: SizedBox(
-                            width: 210,
                             child: Text(
                               'create_a_payment'.tr(),
                               style: AppStyles.mainWhiteTextStyle.copyWith(
